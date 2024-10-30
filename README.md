@@ -46,3 +46,35 @@ Añadimos otros dos sprites de drones al segundo Target Group. El de la izquierd
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_6.gif)
+
+
+#### Tarea: Implementar un zoom a la cámara del jugador que se controle con las teclas w-s.
+
+Creamos un script CameraController. Creamos un puntero GameObject que asignaremos a la cámara. También añadimos los valores de zoom, para poder ajustarlos desde el editor.
+
+```
+public CinemachineVirtualCamera vcam;
+public float nearZoom = 3.0f;
+public float farZoom = 4.0f;
+```
+
+Las teclas w-s ya están en Unity como el eje vertical, que será > 0 con w, < 0 con s. Cuando detecte que pulsamos w acercará la cámara, y cuando detecte s la alejará.
+
+```
+void Update()
+{
+    float verticalInput = Input.GetAxis("Vertical");
+    if(verticalInput > 0)
+    {
+        vcam.m_Lens.OrthographicSize = nearZoom;
+    }
+    if(verticalInput < 0)
+    {
+        vcam.m_Lens.OrthographicSize = farZoom;
+    }
+
+}
+```
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_7.gif)
+
