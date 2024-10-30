@@ -177,9 +177,9 @@ Aquí tenemos el resultado:
 
 Vamos a crear un script que cambie la cámara por defecto (no confinada, sigue al jugador) con una cámara confinada cuando entra en la zona de confinamiento, y que devuelve la cámara original al salir de la zona. Antes de nada, tenemos que marcar el área de confinamiento como isTrigger, y poner la cámara correspondiente como hijo del volumen, para poder conseguir una referencia a su componente CinemachineVirtualCamera. También le asignamos la etiqueta "SwitchPlayerCamera."
 
-![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_6.png)
 
-![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_7.png)
 
 Empezamos definiendo estas tres variables:
 
