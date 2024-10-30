@@ -38,7 +38,10 @@ Creamos tres sprites con un script para moverse entre dos puntos. Los añadimos 
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_5.gif)
 
-Después añadimos otros dos sprites de drones al segundo Target Group. El de la izquierda tiene el doble de Weight, el de la derecha ni siquiera se ve en la cámara.
+
+### Tarea: Agrega 2 sprites adicionales en la escena que estén realizando un movimiento Genera una cámara adicional que le haga el seguimiento a dichos objetos, cada uno con un peso en la importancia del seguimiento diferente.
+
+Añadimos otros dos sprites de drones al segundo Target Group. El de la izquierda tiene el doble de Weight, el de la derecha ni siquiera se ve en la cámara.
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
 
