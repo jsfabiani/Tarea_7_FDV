@@ -99,3 +99,75 @@ if(Input.GetKeyDown("c"))
 ```
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_8.gif)
+
+
+#### Tarea: Crear un script para activar la cámara lenta cuando el personaje entre en colisión con un elemento de la escena que elijas para activar esta propiedad. 
+
+#### Tarea: Crear un script para activar la cámara rápida cuando el personaje entre en colisión con un elemento de la escena que elijas para activar esta propiedad. 
+
+La idea es que cuando colisionemos con algunos objetos, cambie la velocidad de ejecución durante un periodo que especifiquemos. Para eso, empezamos definiendo dos variables:
+
+
+```
+private float resetTime = 0.0f;
+private float resetTimeCounter = 0.0f;
+```
+
+Las usaremos para establecer un temporizador para resetear la velocidad del juego cada vez que lo cambiemos. La primera será el tiempo que tenemos que esperar, la segunda un contador que actualizaremos en Update.
+
+Para cambiar el tiempo de ejecución, definimos esta función:
+
+```
+void GameSpeed(float tscale, float delay)
+{
+    Time.timeScale = tscale;
+    resetTime = Mathf.Abs(delay*tscale);
+    resetTimeCounter = 0.0f;
+}
+```
+
+Tiene dos variables: la primera es la nueva escala Time.timeScale del juego. La segunda es un delay en segundos. Asignamos a resetTime este delay multiplicado por la nueva timeScale, para que dure lo mismo en tiempo real aunque cambiemos la velocidad de ejecución del juego. Después ponemos el contador a 0.
+
+En el Update controlamos el temporizador:
+
+```
+void Update()
+{
+    if (resetTime != 0.0f)
+    {
+        resetTimeCounter += Time.deltaTime;
+        if (resetTimeCounter >= resetTime)
+        {
+            GameSpeed(1.0f, 0.0f);
+        }
+    }
+...
+}
+```
+
+Cuando activemos GameSpeed, resetTime será distinto de 0 y se entrará en el bucle. Entonces, aumentaremos resetTimeCounter cada frame. Cuando alcance el tiempo establecido, ejecutaremos GameSpeed sin delay para devolver la escala de tiempo. Vamos a poner que cuando choquemos contra un enemigo, se active la cámara lenta, y cuando cojamos una mejora se active la cámara rápida, ambos durante 2 segundos.
+
+```
+void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.tag == "Enemy")
+    {
+        GameSpeed(0.5f, 2.0f);          
+    }
+
+}
+
+void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.gameObject.tag == "PowerUp")
+    {
+        GameSpeed(2.0f, 2.0f);
+    }
+}
+```
+
+Tenemos al PowerUp definido como Trigger del ejercicio anterior, por eso usamos OnTriggerEnter2D en vez de OnCollisionEnter2D.
+
+Aquí tenemos el resultado:
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_9.gif)
