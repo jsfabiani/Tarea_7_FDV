@@ -78,3 +78,24 @@ void Update()
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_7.gif)
 
+
+#### Tarea: Seleccionar un conjunto de teclas que permitan hacer el cambio entre dos cámaras . (Habilitar/Deshabilitar el gameobject de la cámara virtual)
+
+En Update, añadimos este código, que comprueba si la cámara está habilitada para deshabilitarla y viceversa.
+
+```
+if(Input.GetKeyDown("c"))
+{
+    Debug.Log(vcam.enabled);
+    if (vcam.enabled)
+    {
+        vcam.enabled = false;
+    }
+    else
+    {
+        vcam.enabled = true;
+    }
+}
+```
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_8.gif)
