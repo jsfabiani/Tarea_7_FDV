@@ -28,3 +28,18 @@ Cada cámara ocupa una mitad del mapa.
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_3.gif)
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_4.gif)
+
+
+### Tarea: Agrega varios sprites en la escena que estén realizando un movimiento (mínimo 3). Genera una cámara adicional que le haga el seguimiento a dichos objetos.
+
+Creamos tres sprites con un script para moverse entre dos puntos. Los añadimos al Target Group de la cámara.
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_4.png)
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_5.gif)
+
+Después añadimos otros dos sprites de drones al segundo Target Group. El de la izquierda tiene el doble de Weight, el de la derecha ni siquiera se ve en la cámara.
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_6.gif)
