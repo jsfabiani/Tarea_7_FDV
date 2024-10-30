@@ -50,7 +50,7 @@ Añadimos otros dos sprites de drones al segundo Target Group. El de la izquierd
 
 #### Tarea: Implementar un zoom a la cámara del jugador que se controle con las teclas w-s.
 
-Creamos un script CameraController. Creamos un puntero GameObject que asignaremos a la cámara. También añadimos los valores de zoom, para poder ajustarlos desde el editor.
+Creamos un script ![CameraController](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/scripts/CameraController.cs), y se lo asignamos al personaje jugador. En este script trabajaremos sobre la cámara.. Creamos un puntero GameObject que asignaremos a la cámara. También añadimos los valores de zoom, para poder ajustarlos desde el editor.
 
 ```
 public CinemachineVirtualCamera vcam;
