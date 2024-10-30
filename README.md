@@ -239,7 +239,7 @@ void OnTriggerExit2D(Collider2D other)
 
 Este es el resultado:
 
-![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_10.gif)
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_9.gif)
 
 
 
