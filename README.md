@@ -171,3 +171,75 @@ Tenemos al PowerUp definido como Trigger del ejercicio anterior, por eso usamos 
 Aquí tenemos el resultado:
 
 ![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_9.gif)
+
+
+#### Tarea: Crear un script para intercambiar la cámara activa, una estará confinada y la otra no cuando el personaje entre en colisión con un elemento de la escena que elijas para realizar el intercambio.
+
+Vamos a crear un script que cambie la cámara por defecto (no confinada, sigue al jugador) con una cámara confinada cuando entra en la zona de confinamiento, y que devuelve la cámara original al salir de la zona. Antes de nada, tenemos que marcar el área de confinamiento como isTrigger, y poner la cámara correspondiente como hijo del volumen, para poder conseguir una referencia a su componente CinemachineVirtualCamera. También le asignamos la etiqueta "SwitchPlayerCamera."
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/screenshots/FDV_7_screenshot_5.png)
+
+Empezamos definiendo estas tres variables:
+
+```
+public CinemachineBrain brain;
+public CinemachineBlendDefinition blendStyle = new CinemachineBlendDefinition (CinemachineBlendDefinition.Style.EaseInOut, 1.0f);
+private CinemachineVirtualCamera vcam;
+```
+brain será un puntero al CinemachineBrain de la cámara de Unity, blendStyle el estilo de Blend por defecto, que podemos configurar desde el editor. Vcam será una referencia a la cámara por defecto del jugador, que no cambiará. En el editor, debe estar configurada como la cámara con prioridad más alta.
+
+Asignamos estas variables. Hay que esperar un frame para poder conseguir una referencia a la cámara activa.
+
+```
+IEnumerator Start()
+{
+    yield return null;
+    
+    //Assign active camera as vcam. This should be the default player camera, and should have highest priority in the scene.
+    vcam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+
+    // Change Default Blend
+    brain.m_DefaultBlend = blendStyle;
+}
+```
+
+Cuando detecte el Trigger, disminuirá la prioridad de la cámara del jugador y aumentará la de la cámara asociada al espacio de confinamiento. No asignamos la prioridad de forma absoluta, para que el script funcione independientemente de cómo estén configuradas las cámaras de la escena.
+
+```
+void OnTriggerEnter2D(Collider2D other)
+{
+...
+
+    if (other.gameObject.tag == "SwitchPlayerCamera")
+    {
+        int priority = vcam.Priority;
+        vcam.Priority -= 5;
+        CinemachineVirtualCamera fixedCamera = other.GetComponentInChildren<CinemachineVirtualCamera>();
+        fixedCamera.Priority = priority;
+
+    }
+}
+```
+
+Cuando sale del área de confinamiento, devuelve la prioridad a la cámara del jugador.
+```
+void OnTriggerExit2D(Collider2D other)
+{
+    if (other.gameObject.tag == "SwitchPlayerCamera")
+    {
+        CinemachineVirtualCamera fixedCamera = other.GetComponentInChildren<CinemachineVirtualCamera>();
+        int priority = fixedCamera.Priority;
+        vcam.Priority = priority;
+        fixedCamera.Priority -= 5;
+    }
+}
+```
+
+Este es el resultado:
+
+![](https://github.com/jsfabiani/Tarea_7_FDV/blob/main/gifs/FDV_7_gif_10.gif)
+
+
+
